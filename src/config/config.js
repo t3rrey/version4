@@ -5,11 +5,11 @@ export default {
     height: window.localStorage.getItem(name) &&
         JSON.parse(window.localStorage.getItem(name)).height ?
         JSON.parse(window.localStorage.getItem(name)).height :
-        10,
+        32,
     width: window.localStorage.getItem(name) &&
         JSON.parse(window.localStorage.getItem(name)).width ?
         JSON.parse(window.localStorage.getItem(name)).width :
-        10,
+        32,
     size: window.localStorage.getItem(name) &&
         JSON.parse(window.localStorage.getItem(name)).size ?
         JSON.parse(window.localStorage.getItem(name)).size :
@@ -25,7 +25,7 @@ export default {
     darkMode: window.localStorage.getItem(name) &&
         JSON.parse(window.localStorage.getItem(name)).darkMode ?
         JSON.parse(window.localStorage.getItem(name)).darkMode :
-        true,
+        false,
     debug: false,
     zoom: 2,
 };

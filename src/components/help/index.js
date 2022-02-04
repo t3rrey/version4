@@ -1,7 +1,7 @@
-import T from 'prop-types'
-import React from 'react'
-import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import T from "prop-types";
+import React from "react";
+import { createPortal } from "react-dom";
+import styled from "styled-components";
 
 const List = styled.ul`
   && {
@@ -17,16 +17,17 @@ const List = styled.ul`
   && > li + li {
     margin-top: 0.5rem;
   }
-`
+`;
 const Help = ({ parent }) => {
-  if (!parent.current || !parent.current.domElement) return null
+  if (!parent.current || !parent.current.domElement) return null;
   return createPortal(
     <List
       className="help-list"
       style={{
-        listStyle: 'disc',
-        background: '#1a1a1a',
-      }}>
+        listStyle: "disc",
+        background: "#1a1a1a",
+      }}
+    >
       <li>Draw with left mouse button.</li>
       <li>Erase with right mouse button.</li>
       <li>Colors are automatically stored in the palette.</li>
@@ -37,14 +38,14 @@ const Help = ({ parent }) => {
         Stores current state, snapshots, palette, settings, etc. in localStorage
       </li>
     </List>,
-    parent.current.domElement.querySelector('ul')
-  )
-}
+    parent.current.domElement.querySelector("ul")
+  );
+};
 
 Help.propTypes = {
   parent: T.shape({
     current: T.object,
   }),
-}
+};
 
-export default Help
+export default Help;

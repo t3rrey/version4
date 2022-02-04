@@ -1,9 +1,9 @@
-import T from 'prop-types'
-import React from 'react'
-import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import T from "prop-types";
+import React from "react";
+import { createPortal } from "react-dom";
+import styled from "styled-components";
 
-import { Debug, DebugContainer } from '../debugging'
+import { Debug, DebugContainer } from "../debugging";
 
 const OutputDrawer = styled.details`
   position: fixed;
@@ -11,10 +11,10 @@ const OutputDrawer = styled.details`
   left: 1rem;
   outline: transparent;
   color: hsl(0, 0%, calc((100 - var(--darkness, 90)) * 1%));
-`
+`;
 const OutputTitle = styled.summary`
   outline: transparent;
-`
+`;
 
 const Output = ({ height, width, size, shadow, translateX, translateY }) => {
   return createPortal(
@@ -31,7 +31,7 @@ const Output = ({ height, width, size, shadow, translateX, translateY }) => {
       </DebugContainer>
     </OutputDrawer>,
     document.body
-  )
-}
+  );
+};
 
-export default Output
+export default Output;

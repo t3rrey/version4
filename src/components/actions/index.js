@@ -1,7 +1,7 @@
-import T from 'prop-types'
-import React, { Fragment } from 'react'
-import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import T from "prop-types";
+import React, { Fragment } from "react";
+import { createPortal } from "react-dom";
+import styled from "styled-components";
 
 const ActionButton = styled.button`
   background: transparent;
@@ -13,8 +13,8 @@ const ActionButton = styled.button`
   display: block;
   color: #eee;
   outline: transparent;
-  font: 11px 'Lucida Grande', sans-serif;
-`
+  font: 11px "Lucida Grande", sans-serif;
+`;
 const Actions = ({
   parent,
   onCss,
@@ -27,103 +27,118 @@ const Actions = ({
   onImport,
   onTrim,
 }) => {
-  if (!parent.current || !parent.current.domElement) return null
+  if (!parent.current || !parent.current.domElement) return null;
   return createPortal(
     <Fragment>
       <li
         className="cr"
-        style={{ borderLeft: '3px solid hsl(120, 100%, 50%)' }}>
+        style={{ borderLeft: "3px solid hsl(120, 100%, 50%)" }}
+      >
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={() => onCss(true)}
-          className="property-name">
+          className="property-name"
+        >
           Save CSS
         </ActionButton>
       </li>
       <li
         className="cr"
-        style={{ borderLeft: '3px solid hsl(180, 100%, 50%)' }}>
+        style={{ borderLeft: "3px solid hsl(180, 100%, 50%)" }}
+      >
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={() => onCss(false)}
-          className="property-name">
+          className="property-name"
+        >
           Copy CSS
         </ActionButton>
       </li>
       <li
         className="cr"
-        style={{ borderLeft: '3px solid hsl(180, 100%, 50%)' }}>
+        style={{ borderLeft: "3px solid hsl(180, 100%, 50%)" }}
+      >
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={() => onCssVar()}
-          className="property-name">
+          className="property-name"
+        >
           Copy as CSS variable
         </ActionButton>
       </li>
       <li
         className="cr"
-        style={{ borderLeft: '3px solid hsl(120, 100%, 50%)' }}>
+        style={{ borderLeft: "3px solid hsl(120, 100%, 50%)" }}
+      >
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onSvg}
-          className="property-name">
+          className="property-name"
+        >
           Save SVG
         </ActionButton>
       </li>
       <li
         className="cr"
-        style={{ borderLeft: '3px solid hsl(120, 100%, 50%)' }}>
+        style={{ borderLeft: "3px solid hsl(120, 100%, 50%)" }}
+      >
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onImage}
-          className="property-name">
+          className="property-name"
+        >
           Save PNG
         </ActionButton>
       </li>
-      <li className="cr" style={{ borderLeft: '3px solid hsl(60, 100%, 50%)' }}>
+      <li className="cr" style={{ borderLeft: "3px solid hsl(60, 100%, 50%)" }}>
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onSnapshot}
-          className="property-name">
+          className="property-name"
+        >
           Snapshot
         </ActionButton>
       </li>
-      <li className="cr" style={{ borderLeft: '3px solid hsl(60, 100%, 50%)' }}>
+      <li className="cr" style={{ borderLeft: "3px solid hsl(60, 100%, 50%)" }}>
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onExport}
-          className="property-name">
+          className="property-name"
+        >
           Export
         </ActionButton>
       </li>
-      <li className="cr" style={{ borderLeft: '3px solid hsl(60, 100%, 50%)' }}>
+      <li className="cr" style={{ borderLeft: "3px solid hsl(60, 100%, 50%)" }}>
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onImport}
-          className="property-name">
+          className="property-name"
+        >
           Import
         </ActionButton>
       </li>
       <li className="cr function">
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onTrim}
-          className="property-name">
+          className="property-name"
+        >
           Trim canvas
         </ActionButton>
       </li>
       <li className="cr function">
         <ActionButton
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           onClick={onClear}
-          className="property-name">
+          className="property-name"
+        >
           Clear canvas
         </ActionButton>
       </li>
     </Fragment>,
-    parent.current.domElement.querySelector('ul')
-  )
-}
+    parent.current.domElement.querySelector("ul")
+  );
+};
 Actions.propTypes = {
   onClear: T.func,
   onCss: T.func,
@@ -135,8 +150,8 @@ Actions.propTypes = {
   onImport: T.func,
   onTrim: T.func,
   parent: T.shape({
-    current: T.object
+    current: T.object,
   }),
-}
+};
 
-export default Actions
+export default Actions;

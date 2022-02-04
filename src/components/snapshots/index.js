@@ -1,9 +1,9 @@
-import T from 'prop-types'
-import React from 'react'
-import { createPortal } from 'react-dom'
-import styled from 'styled-components'
+import T from "prop-types";
+import React from "react";
+import { createPortal } from "react-dom";
+import styled from "styled-components";
 
-import { Debug, DebugContainer } from '../debugging'
+import { Debug, DebugContainer } from "../debugging";
 
 // Snapshots Component that is injected into Dat.GUI
 const Snapshots = styled.div`
@@ -12,7 +12,7 @@ const Snapshots = styled.div`
   flex-wrap: wrap;
   max-height: 194px;
   overflow: auto;
-`
+`;
 const Snapshot = styled.button`
   background: none;
   height: 44px;
@@ -38,15 +38,15 @@ const Snapshot = styled.button`
     transform-origin: center center;
     transform: translate(-50%, -50%) scale(${(p) => p.scale});
   }
-`
+`;
 
-const SnapshotsContainer = styled.li``
+const SnapshotsContainer = styled.li``;
 
 const ControllerSnapshots = ({ snapshots, onChange, onDelete, parent }) => {
-  if (!parent.current || !parent.current.domElement) return null
+  if (!parent.current || !parent.current.domElement) return null;
   return createPortal(
     <SnapshotsContainer className="cr snapshot-gallery">
-      {snapshots.length === 0 && 'No stored snapshots'}
+      {snapshots.length === 0 && "No stored snapshots"}
       {snapshots.length > 0 && (
         <Snapshots>
           {snapshots.map((snapshot) => {
@@ -59,15 +59,16 @@ const ControllerSnapshots = ({ snapshots, onChange, onDelete, parent }) => {
               translateX,
               translateY,
               snapshotScale,
-            } = snapshot
+            } = snapshot;
             return (
               <Snapshot
                 onContextMenu={(e) => onDelete(e, created)}
                 onClick={(e) => {
-                  onChange(e, snapshot)
+                  onChange(e, snapshot);
                 }}
                 scale={snapshotScale}
-                key={created}>
+                key={created}
+              >
                 <DebugContainer width={width} height={height} size={size}>
                   <Debug
                     shadow={shadow}
@@ -78,14 +79,14 @@ const ControllerSnapshots = ({ snapshots, onChange, onDelete, parent }) => {
                   />
                 </DebugContainer>
               </Snapshot>
-            )
+            );
           })}
         </Snapshots>
       )}
     </SnapshotsContainer>,
-    parent.current.domElement.querySelector('ul')
-  )
-}
+    parent.current.domElement.querySelector("ul")
+  );
+};
 
 ControllerSnapshots.propTypes = {
   snapshots: T.arrayOf(T.shape({})),
@@ -94,6 +95,6 @@ ControllerSnapshots.propTypes = {
   parent: T.shape({
     current: T.object,
   }),
-}
+};
 
-export default ControllerSnapshots
+export default ControllerSnapshots;
