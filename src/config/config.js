@@ -27,5 +27,5 @@ export default {
         JSON.parse(window.localStorage.getItem(name)).darkMode :
         true,
     debug: false,
-    zoom: 1,
+    zoom: 2,
 };

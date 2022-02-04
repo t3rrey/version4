@@ -7,21 +7,10 @@ import Actions from "./components/actions";
 import Snapshots from "./components/snapshots";
 import Palette from "./components/palette";
 import Canvas from "./components/canvas";
-import CONFIG from "./config/config";
+import CONFIG from "./config/config.js";
 
+import { downloadFile } from "./services/data.service";
 const STORAGE_KEY = CONFIG.name;
-
-const downloadFile = (content, type, name) => {
-  const FILE = new Blob([content], { type: type });
-  const FILE_URL = URL.createObjectURL(FILE);
-  const link = document.createElement("a");
-  link.href = FILE_URL;
-  link.download = name || `${STORAGE_KEY}-creation`;
-  document.body.appendChild(link);
-  link.click();
-  URL.revokeObjectURL(FILE_URL);
-  link.remove();
-};
 
 const Container = styled.div`
   display: flex;
@@ -43,7 +32,6 @@ const App = () => {
   const [color, setColor] = useState(CONFIG.color);
   const heightRef = useRef(CONFIG.height);
   const widthRef = useRef(CONFIG.width);
-  // const [debugging, setDebugging] = useState(CONFIG.debug)
   const [darkMode, setDarkMode] = useState(
     window.localStorage.getItem(STORAGE_KEY) &&
       JSON.parse(window.localStorage.getItem(STORAGE_KEY)).darkMode
@@ -665,20 +653,20 @@ const App = () => {
         cells={cellRef.current}
         color={color}
         key={viewing}
-      />
+      />{" "}
       <Palette
         color={color}
         palette={palette}
         parent={colorFolderRef}
         onChange={onPaletteChange}
         onDelete={deletePaletteColor}
-      />
+      />{" "}
       <Snapshots
         snapshots={snapshots}
         onChange={handleSnapshot}
         onDelete={deleteSnapshot}
         parent={snapshotFolderRef}
-      />
+      />{" "}
       <Help parent={helpFolderRef} /> <About parent={aboutFolderRef} />
       <Actions
         onCss={onCss}
@@ -691,7 +679,7 @@ const App = () => {
         onImport={onImport}
         onTrim={onTrim}
         parent={actionsFolderRef}
-      />
+      />{" "}
     </Container>
   );
 };
