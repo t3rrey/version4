@@ -1,3 +1,6 @@
+import CONFIG from "../config/config";
+const STORAGE_KEY = CONFIG.name;
+
 export const downloadFile = (content, type, name) => {
     const FILE = new Blob([content], { type: type });
     const FILE_URL = URL.createObjectURL(FILE);

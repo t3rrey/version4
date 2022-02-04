@@ -1,5 +1,5 @@
 import T from "prop-types";
-import React, { Fragment } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 
@@ -29,7 +29,7 @@ const Actions = ({
 }) => {
   if (!parent.current || !parent.current.domElement) return null;
   return createPortal(
-    <Fragment>
+    <>
       <li
         className="cr"
         style={{ borderLeft: "3px solid hsl(120, 100%, 50%)" }}
@@ -135,7 +135,7 @@ const Actions = ({
           Clear canvas
         </ActionButton>
       </li>
-    </Fragment>,
+    </>,
     parent.current.domElement.querySelector("ul")
   );
 };

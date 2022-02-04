@@ -653,20 +653,20 @@ const App = () => {
         cells={cellRef.current}
         color={color}
         key={viewing}
-      />{" "}
+      />
       <Palette
         color={color}
         palette={palette}
         parent={colorFolderRef}
         onChange={onPaletteChange}
         onDelete={deletePaletteColor}
-      />{" "}
+      />
       <Snapshots
         snapshots={snapshots}
         onChange={handleSnapshot}
         onDelete={deleteSnapshot}
         parent={snapshotFolderRef}
-      />{" "}
+      />
       <Help parent={helpFolderRef} /> <About parent={aboutFolderRef} />
       <Actions
         onCss={onCss}
@@ -679,7 +679,7 @@ const App = () => {
         onImport={onImport}
         onTrim={onTrim}
         parent={actionsFolderRef}
-      />{" "}
+      />
     </Container>
   );
 };
