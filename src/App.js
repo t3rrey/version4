@@ -1,8 +1,6 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import { GUI } from "dat.gui";
 import styled from "styled-components";
-import About from "./components/about";
-import Help from "./components/help";
 import Actions from "./components/actions";
 import Snapshots from "./components/snapshots";
 import Palette from "./components/palette";
@@ -560,9 +558,9 @@ const App = () => {
       ZOOM.updateDisplay();
       updateZoom(CONFIG.zoom);
     };
+
     document.querySelector("#root").addEventListener("wheel", handleZoom);
-    helpFolderRef.current = controllerRef.current.addFolder("Help");
-    aboutFolderRef.current = controllerRef.current.addFolder("About");
+    
     // set a state variable to trigger the intial view?
     setViewing(new Date().getTime());
   }, [darkMode, saveToStorage, palette]);
@@ -667,7 +665,7 @@ const App = () => {
         onDelete={deleteSnapshot}
         parent={snapshotFolderRef}
       />
-      <Help parent={helpFolderRef} /> <About parent={aboutFolderRef} />
+
       <Actions
         onCss={onCss}
         onCssVar={onCopyCSSVariable}
