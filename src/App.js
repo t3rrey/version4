@@ -15,7 +15,7 @@ const STORAGE_KEY = CONFIG.name;
 const Container = styled.div `
   display: flex;
   align-items: center;
-  justify-content: center;
+
   flex-direction: column;
   transform: scale(var(--zoom, 1));
   max-height: 100vh;
@@ -626,7 +626,7 @@ const App = () => {
         onChange = { handleSnapshot }
         onDelete = { deleteSnapshot }
         parent = { snapshotFolderRef }
-        /> <
+        />{" "} <
         Actions onCss = { onCss }
         onCssVar = { onCopyCSSVariable }
         onSvg = {
