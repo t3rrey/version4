@@ -6,15 +6,23 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 const StyledContainer = styled.div`
-  width: 30%;
-
-  border: 1px solid black;
+  width: 350px;
+  border-radius: 20px;
   padding: 20px;
+  padding-top: 0px;
+  -webkit-box-shadow: 1px 6px 13px -6px rgba(0, 0, 0, 0.78);
+  box-shadow: 1px 6px 13px -6px rgba(0, 0, 0, 0.78);
+  margin: 20px;
+`;
+
+const StyledMainHeading = styled.h1`
+  font-size: 20px;
 `;
 
 const Menu = () => {
   return (
     <StyledContainer>
+      <StyledMainHeading>Canvas Configuration</StyledMainHeading>
       <StyledSliderInput
         width={300}
         defaultValue={16}

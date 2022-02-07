@@ -10,6 +10,7 @@ import CONFIG from "./config/config.js";
 
 import { downloadFile, onSvg, onClear } from "./services/data.service";
 import Menu from "./components/Menu";
+import Header from "./components/Header";
 
 const STORAGE_KEY = CONFIG.name;
 
@@ -22,6 +23,10 @@ const Container = styled.div`
   & > * + * {
     margin-top: 2rem;
   }
+`;
+
+const MenuCon = styled.div`
+  width: 30%;
 `;
 
 const App = () => {
@@ -604,7 +609,12 @@ const App = () => {
   }, [size, radius, width, height, color, darkMode, saveToStorage]);
   return (
     <>
-      <Menu />
+      <Header />
+      <MenuCon>
+        <Menu />
+        <Menu />
+        <Menu />
+      </MenuCon>
 
       <Container>
         <Canvas

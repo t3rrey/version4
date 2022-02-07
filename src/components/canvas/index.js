@@ -6,6 +6,7 @@ const Container = styled.div`
   position: relative;
   height: ${(p) => p.height}px;
   width: ${(p) => p.width}px;
+  margin-left: 100px;
 `;
 const Grid = styled.div`
   --circles: ${(p) => p.circles};
