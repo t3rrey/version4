@@ -9,6 +9,8 @@ body {
     font-weight: bold;
     background: hsl(0, 0%, calc(var(--darkness, 100%) * 1%));
     image-rendering: pixelated;
+    display: flex;
+    flex-direction: column;
 }
 
 code {
@@ -39,14 +41,4 @@ code {
 .dg li:not(.folder).snapshot-gallery,
 .dg li:not(.folder).color-palette {
     height: auto;
-}
-
-#root {
-    height: 100vh;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    background: hsl(0, 0%, calc(var(--darkness, 100%) * 1%));
 }

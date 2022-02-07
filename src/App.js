@@ -14,6 +14,30 @@ import Header from "./components/Header";
 
 const STORAGE_KEY = CONFIG.name;
 
+const Content = styled.div`
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 50px);
+`;
+
+const C1 = styled.div`
+  flex-grow: 1;
+`;
+
+const C2 = styled.div`
+  flex-grow: 4;
+  display: flex;
+  flex-direction: column;
+`;
+
+const C3 = styled.div`
+  flex-grow: 8;
+`;
+
+const C4 = styled.div`
+  flex-grow: 1;
+`;
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -610,13 +634,15 @@ const App = () => {
   return (
     <>
       <Header />
-      <MenuCon>
-        <Menu />
-        <Menu />
-        <Menu />
-      </MenuCon>
+      <Content>
+        <C1></C1>
+        <C2>
+          <C3></C3>
+          <C4></C4>
+        </C2>
+      </Content>
 
-      <Container>
+      {/* <Container>
         <Canvas
           size={size}
           circles={radius}
@@ -655,7 +681,7 @@ const App = () => {
           onTrim={onTrim}
           parent={actionsFolderRef}
         />
-      </Container>
+      </Container> */}
     </>
   );
 };
