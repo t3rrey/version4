@@ -19,14 +19,13 @@ const Content = styled.div`
   height: calc(100vh - 50px);
 `;
 
-const C1 = styled.div`
-  flex-grow: 1;
-`;
+const C1 = styled.div``;
 
 const C2 = styled.div`
   flex-grow: 4;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const C3 = styled.div`
@@ -631,26 +630,58 @@ const App = () => {
   useEffect(() => {
     saveToStorage();
   }, [size, radius, width, height, color, darkMode, saveToStorage]);
+
+  const confirm = (initialValue, callback, newValue, setValue) => {
+    const message = "Do you want to change the value to " + newValue + "?";
+
+    if (!window.confirm(message)) {
+      setValue(initialValue);
+    } else {
+      callback(newValue);
+    }
+  };
+
+  const inputs = [
+    {
+      defaultValue: 50,
+      title: "Width",
+      maxValue: 100,
+      minValue: 5,
+      onChange: confirm.bind(null, width, setWidth),
+    },
+    {
+      defaultValue: 50,
+      title: "Height",
+      maxValue: 100,
+      minValue: 5,
+      onChange: confirm.bind(null, height, setHeight),
+    },
+    {
+      defaultValue: 50,
+      title: "Pixel Size",
+      maxValue: 100,
+      minValue: 5,
+      onChange: confirm.bind(null, size, setSize),
+    },
+  ];
+
   return (
     <>
       <Header />
       <Content>
         <C1>
-          <Menu />
+          <Menu inputs={inputs} />
         </C1>
         <C2>
-          <C3>
-            <Canvas
-              size={size}
-              circles={radius}
-              width={width}
-              height={height}
-              cells={cellRef.current}
-              color={color}
-              key={viewing}
-            />
-          </C3>
-          <C4></C4>
+          <Canvas
+            size={size}
+            circles={radius}
+            width={width}
+            height={height}
+            cells={cellRef.current}
+            color={color}
+            key={viewing}
+          />
         </C2>
       </Content>
 

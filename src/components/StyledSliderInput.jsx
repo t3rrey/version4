@@ -17,6 +17,7 @@ const StyledSliderInput = ({
   maxValue,
   minValue,
   stepValue,
+  onChange,
 }) => {
   const [value, setValue] = useState(defaultValue);
 
@@ -24,8 +25,14 @@ const StyledSliderInput = ({
     setValue(newValue);
   };
 
+  const handleSliderChangeCommitted = (event, newValue) =>
+    onChange(newValue, setValue);
+
   const handleInputChange = (event) => {
-    setValue(event.target.value === "" ? "" : Number(event.target.value));
+    const newValue =
+      event.target.value === "" ? "" : Number(event.target.value);
+    setValue(newValue);
+    onChange(newValue);
   };
 
   const handleBlur = () => {
@@ -45,6 +52,7 @@ const StyledSliderInput = ({
             size="small"
             value={typeof value === "number" ? value : 0}
             onChange={handleSliderChange}
+            onChangeCommitted={handleSliderChangeCommitted}
             aria-labelledby="input-slider"
           />
         </Grid>

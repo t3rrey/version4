@@ -40,11 +40,19 @@ const StyledMainHeading = styled.h1`
 //     })
 //     .name("Canvas height");
 // };
-const Menu = () => {
+/*{
+  value,
+  setValue,
+  label
+}*/
+const Menu = ({ inputs }) => {
   return (
     <StyledContainer>
       <StyledMainHeading>Canvas Configuration</StyledMainHeading>
-      <StyledSliderInput
+      {inputs.map((input) => (
+        <StyledSliderInput width={300} stepValue={1} {...input} />
+      ))}
+      {/*<StyledSliderInput
         width={300}
         defaultValue={16}
         title={"Width"}
@@ -52,7 +60,22 @@ const Menu = () => {
         minValue={4}
         stepValue={1}
       />
-
+      <StyledSliderInput
+        width={300}
+        defaultValue={16}
+        title={"Height"}
+        maxValue={100}
+        minValue={4}
+        stepValue={1}
+      />
+      <StyledSliderInput
+        width={300}
+        defaultValue={16}
+        title={"Pixel Size"}
+        maxValue={100}
+        minValue={4}
+        stepValue={1}
+      />*/}
       <FormGroup>
         <FormControlLabel
           control={<Switch defaultChecked />}
