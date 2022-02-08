@@ -5,7 +5,6 @@ import Actions from "./components/actions";
 import Snapshots from "./components/snapshots";
 import Palette from "./components/palette";
 import Canvas from "./components/canvas";
-import StyledSliderInput from "./components/StyledSliderInput";
 import CONFIG from "./config/config.js";
 
 import { downloadFile, onSvg, onClear } from "./services/data.service";
@@ -32,6 +31,11 @@ const C2 = styled.div`
 
 const C3 = styled.div`
   flex-grow: 8;
+  align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  margin: auto;
+  margin-top: 100px;
 `;
 
 const C4 = styled.div`
@@ -47,10 +51,6 @@ const Container = styled.div`
   & > * + * {
     margin-top: 2rem;
   }
-`;
-
-const MenuCon = styled.div`
-  width: 30%;
 `;
 
 const App = () => {
@@ -635,23 +635,27 @@ const App = () => {
     <>
       <Header />
       <Content>
-        <C1></C1>
+        <C1>
+          <Menu />
+        </C1>
         <C2>
-          <C3></C3>
+          <C3>
+            <Canvas
+              size={size}
+              circles={radius}
+              width={width}
+              height={height}
+              cells={cellRef.current}
+              color={color}
+              key={viewing}
+            />
+          </C3>
           <C4></C4>
         </C2>
       </Content>
 
       {/* <Container>
-        <Canvas
-          size={size}
-          circles={radius}
-          width={width}
-          height={height}
-          cells={cellRef.current}
-          color={color}
-          key={viewing}
-        />
+        
         <Palette
           color={color}
           palette={palette}

@@ -18,7 +18,28 @@ const StyledContainer = styled.div`
 const StyledMainHeading = styled.h1`
   font-size: 20px;
 `;
-
+// const updateWidth = () => {
+//   controllerRef.current = new GUI();
+//   const CONFIGURATION = controllerRef.current.addFolder("Configuration");
+//   CONFIGURATION.add(CONFIG, "height", 2, 100, 1)
+//     .onFinishChange((value) => {
+//       if (
+//         value !== heightRef.current &&
+//         window.confirm(
+//           "Are you sure? Making this change will wipe your current canvas."
+//         )
+//       ) {
+//         cellRef.current = [
+//           ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
+//         ];
+//         setHeight(value);
+//         heightRef.current = value;
+//         saveToStorage();
+//         // setShadow(null)
+//       }
+//     })
+//     .name("Canvas height");
+// };
 const Menu = () => {
   return (
     <StyledContainer>
@@ -31,22 +52,7 @@ const Menu = () => {
         minValue={4}
         stepValue={1}
       />
-      <StyledSliderInput
-        width={300}
-        defaultValue={16}
-        title={"Height"}
-        maxValue={100}
-        minValue={4}
-        stepValue={1}
-      />
-      <StyledSliderInput
-        width={300}
-        defaultValue={16}
-        title={"Pixel Size"}
-        maxValue={100}
-        minValue={4}
-        stepValue={1}
-      />
+
       <FormGroup>
         <FormControlLabel
           control={<Switch defaultChecked />}
