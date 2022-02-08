@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
-import { GUI } from "dat.gui";
 import styled from "styled-components";
 import Actions from "./components/actions";
 import Snapshots from "./components/snapshots";

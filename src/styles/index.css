@@ -21,24 +21,3 @@ code {
     box-sizing: border-box;
     touch-action: none;
 }
-
-.dg .closed li:not(.folder).color-palette,
-.dg .closed li:not(.folder).snapshot-gallery,
-.dg .closed li:not(.folder).about {
-    height: 0;
-    overflow: hidden;
-}
-
-.dg .closed .help-list li {
-    margin: 0;
-}
-
-.dg .closed .help-list {
-    padding: 0;
-}
-
-.dg li:not(.folder).about,
-.dg li:not(.folder).snapshot-gallery,
-.dg li:not(.folder).color-palette {
-    height: auto;
-}
