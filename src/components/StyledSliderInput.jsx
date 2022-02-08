@@ -11,7 +11,6 @@ const Heading = styled.p`
 `;
 
 const StyledSliderInput = ({
-  width,
   defaultValue,
   title,
   maxValue,

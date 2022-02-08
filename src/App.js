@@ -452,107 +452,107 @@ const App = () => {
     }
   }, [height, width, saveToStorage]);
 
-  useEffect(() => {
-    if (controllerRef.current) return;
-    // Set dark mode up
-    document.documentElement.style.setProperty(
-      "--darkness",
-      darkMode ? 10 : 100
-    );
-    controllerRef.current = new GUI();
-    const CONFIGURATION = controllerRef.current.addFolder("Configuration");
-    CONFIGURATION.add(CONFIG, "height", 2, 100, 1)
-      .onFinishChange((value) => {
-        if (
-          value !== heightRef.current &&
-          window.confirm(
-            "Are you sure? Making this change will wipe your current canvas."
-          )
-        ) {
-          cellRef.current = [
-            ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
-          ];
-          setHeight(value);
-          heightRef.current = value;
-          saveToStorage();
-          // setShadow(null)
-        }
-      })
-      .name("Canvas height");
-    CONFIGURATION.add(CONFIG, "width", 2, 100, 1)
-      .onFinishChange((value) => {
-        if (
-          value !== widthRef.current &&
-          window.confirm(
-            "Are you sure? Making this change will wipe your current canvas."
-          )
-        ) {
-          cellRef.current = [
-            ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
-          ];
-          setWidth(value);
-          widthRef.current = value;
-          saveToStorage();
-          // setShadow(null)
-        }
-      })
-      .name("Canvas width");
-    CONFIGURATION.add(CONFIG, "size", 0, 20, 1)
-      .onFinishChange((size) => {
-        setSize(size);
-        // Will trigger shadow generation
-        // generateShadow()
-      })
-      .name("Pixel size");
-    CONFIGURATION.add(CONFIG, "radius")
-      .onFinishChange((size) => {
-        setRadius(size);
-      })
-      .name("Pixel radius");
+  // useEffect(() => {
+  //   if (controllerRef.current) return;
+  //   // Set dark mode up
+  //   document.documentElement.style.setProperty(
+  //     "--darkness",
+  //     darkMode ? 10 : 100
+  //   );
+  //   controllerRef.current = new GUI();
+  //   const CONFIGURATION = controllerRef.current.addFolder("Configuration");
+  //   CONFIGURATION.add(CONFIG, "height", 2, 100, 1)
+  //     .onFinishChange((value) => {
+  //       if (
+  //         value !== heightRef.current &&
+  //         window.confirm(
+  //           "Are you sure? Making this change will wipe your current canvas."
+  //         )
+  //       ) {
+  //         cellRef.current = [
+  //           ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
+  //         ];
+  //         setHeight(value);
+  //         heightRef.current = value;
+  //         saveToStorage();
+  //         // setShadow(null)
+  //       }
+  //     })
+  //     .name("Canvas height");
+  //   CONFIGURATION.add(CONFIG, "width", 2, 100, 1)
+  //     .onFinishChange((value) => {
+  //       if (
+  //         value !== widthRef.current &&
+  //         window.confirm(
+  //           "Are you sure? Making this change will wipe your current canvas."
+  //         )
+  //       ) {
+  //         cellRef.current = [
+  //           ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
+  //         ];
+  //         setWidth(value);
+  //         widthRef.current = value;
+  //         saveToStorage();
+  //         // setShadow(null)
+  //       }
+  //     })
+  //     .name("Canvas width");
+  //   CONFIGURATION.add(CONFIG, "size", 0, 20, 1)
+  //     .onFinishChange((size) => {
+  //       setSize(size);
+  //       // Will trigger shadow generation
+  //       // generateShadow()
+  //     })
+  //     .name("Pixel size");
+  //   CONFIGURATION.add(CONFIG, "radius")
+  //     .onFinishChange((size) => {
+  //       setRadius(size);
+  //     })
+  //     .name("Pixel radius");
 
-    colorFolderRef.current = controllerRef.current.addFolder("Color");
-    colorControllerRef.current = colorFolderRef.current
-      .addColor(CONFIG, "color")
-      .onFinishChange((color) => {
-        setColor(color);
-      })
-      .name("Color");
+  //   colorFolderRef.current = controllerRef.current.addFolder("Color");
+  //   colorControllerRef.current = colorFolderRef.current
+  //     .addColor(CONFIG, "color")
+  //     .onFinishChange((color) => {
+  //       setColor(color);
+  //     })
+  //     .name("Color");
 
-    snapshotFolderRef.current = controllerRef.current.addFolder("Snapshots");
-    settingsFolderRef.current = controllerRef.current.addFolder("Settings");
-    settingsFolderRef.current
-      .add(CONFIG, "darkMode")
-      .onChange(setDarkMode)
-      .name("Dark mode");
-    const updateZoom = (value) => {
-      document.documentElement.style.setProperty("--zoom", value);
-      // TODO: Should we store the zoom in localStorage
-    };
-    const ZOOM = settingsFolderRef.current
-      .add(CONFIG, "zoom", 1, 10, 0.1)
-      .onChange(updateZoom)
-      .name("Zoom");
-    // settingsFolderRef.current
-    //   .add(CONFIG, 'debug')
-    //   .onChange(setDebugging)
-    //   .name('Show dev debug')
-    // Add actions folder for buttons
-    actionsFolderRef.current = controllerRef.current.addFolder("Actions");
+  //   snapshotFolderRef.current = controllerRef.current.addFolder("Snapshots");
+  //   settingsFolderRef.current = controllerRef.current.addFolder("Settings");
+  //   settingsFolderRef.current
+  //     .add(CONFIG, "darkMode")
+  //     .onChange(setDarkMode)
+  //     .name("Dark mode");
+  //   const updateZoom = (value) => {
+  //     document.documentElement.style.setProperty("--zoom", value);
+  //     // TODO: Should we store the zoom in localStorage
+  //   };
+  //   const ZOOM = settingsFolderRef.current
+  //     .add(CONFIG, "zoom", 1, 10, 0.1)
+  //     .onChange(updateZoom)
+  //     .name("Zoom");
+  //   // settingsFolderRef.current
+  //   //   .add(CONFIG, 'debug')
+  //   //   .onChange(setDebugging)
+  //   //   .name('Show dev debug')
+  //   // Add actions folder for buttons
+  //   actionsFolderRef.current = controllerRef.current.addFolder("Actions");
 
-    // Try wheel zoom
-    const handleZoom = (e) => {
-      const STEP = 0.1;
-      const D = Math.max(-STEP, Math.min(STEP, e.wheelDeltaY || -e.detail));
-      CONFIG.zoom = Math.min(10, Math.max(CONFIG.zoom - D, 1));
-      ZOOM.updateDisplay();
-      updateZoom(CONFIG.zoom);
-    };
+  //   // Try wheel zoom
+  //   const handleZoom = (e) => {
+  //     const STEP = 0.1;
+  //     const D = Math.max(-STEP, Math.min(STEP, e.wheelDeltaY || -e.detail));
+  //     CONFIG.zoom = Math.min(10, Math.max(CONFIG.zoom - D, 1));
+  //     ZOOM.updateDisplay();
+  //     updateZoom(CONFIG.zoom);
+  //   };
 
-    document.querySelector("#root").addEventListener("wheel", handleZoom);
+  //   document.querySelector("#root").addEventListener("wheel", handleZoom);
 
-    // set a state variable to trigger the intial view?
-    setViewing(new Date().getTime());
-  }, [darkMode, saveToStorage, palette]);
+  //   // set a state variable to trigger the intial view?
+  //   setViewing(new Date().getTime());
+  // }, [darkMode, saveToStorage, palette]);
 
   useEffect(() => {
     if (palette.indexOf(color) === -1) {
@@ -643,24 +643,24 @@ const App = () => {
 
   const inputs = [
     {
-      defaultValue: 50,
+      defaultValue: 16,
       title: "Width",
-      maxValue: 100,
-      minValue: 5,
+      maxValue: 128,
+      minValue: 4,
       onChange: confirm.bind(null, width, setWidth),
     },
     {
-      defaultValue: 50,
+      defaultValue: 16,
       title: "Height",
-      maxValue: 100,
-      minValue: 5,
+      maxValue: 128,
+      minValue: 4,
       onChange: confirm.bind(null, height, setHeight),
     },
     {
-      defaultValue: 50,
+      defaultValue: 10,
       title: "Pixel Size",
-      maxValue: 100,
-      minValue: 5,
+      maxValue: 20,
+      minValue: 1,
       onChange: confirm.bind(null, size, setSize),
     },
   ];
