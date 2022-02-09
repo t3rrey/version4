@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import eyeIcon from "../../assets/eyeIcon.svg";
-
+import dashedSquareIcon from "../../assets/dashedSquareIcon.svg";
 const LayerContainer = styled.div`
   width: 95%;
   height: 30px;
   border-bottom: 1px solid gray;
   display: flex;
+  cursor: pointer;
 `;
 const StyledVisibleIcon = styled.img`
   width: 20px;
@@ -30,6 +31,7 @@ const StyledLayerNameInput = styled.input`
 const Layer = ({ layerName }) => {
   const [toggle, setToggle] = useState(true);
   const [text, setText] = useState(layerName);
+  const [visibleLayer, setVisibleLayer] = useState(true);
 
   function toggleInput() {
     setToggle(!toggle);
@@ -38,9 +40,18 @@ const Layer = ({ layerName }) => {
   function handleChange(event) {
     setText(event.target.value);
   }
+
+  const handleHideLayer = () => {
+    setVisibleLayer(!visibleLayer);
+  };
+
   return (
     <LayerContainer>
-      <StyledVisibleIcon src={eyeIcon} />
+      {visibleLayer ? (
+        <StyledVisibleIcon src={eyeIcon} onClick={handleHideLayer} />
+      ) : (
+        <StyledVisibleIcon src={dashedSquareIcon} onClick={handleHideLayer} />
+      )}
       <StyledLayerNameContainer>
         {toggle ? (
           <StyledLayerName onDoubleClick={toggleInput}>{text}</StyledLayerName>

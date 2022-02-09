@@ -77,6 +77,7 @@ const StyledColorHistory = styled.div`
   height: 50px;
   border-radius: 10px;
   margin: 5px;
+  cursor: pointer;
 `;
 
 const Menu = ({ inputs }) => {
@@ -86,8 +87,6 @@ const Menu = ({ inputs }) => {
 
   const handleChangeColor = () => {
     setColorHistory(updateColorHistory(debounceColor, colorHistory));
-    console.log(currentColor);
-    console.log(colorHistory);
   };
 
   const updateColorHistory = (newColor, colorHistory) => {
