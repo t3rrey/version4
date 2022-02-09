@@ -3,7 +3,7 @@ import styled from "styled-components";
 import eyeIcon from "../../assets/eyeIcon.svg";
 import dashedSquareIcon from "../../assets/dashedSquareIcon.svg";
 const LayerContainer = styled.div`
-  width: 95%;
+  width: 100%;
   height: 30px;
   border-bottom: 1px solid gray;
   display: flex;
@@ -32,6 +32,7 @@ const Layer = ({ layerName }) => {
   const [toggle, setToggle] = useState(true);
   const [text, setText] = useState(layerName);
   const [visibleLayer, setVisibleLayer] = useState(true);
+  const [layers, setLayers] = useState([]);
 
   function toggleInput() {
     setToggle(!toggle);

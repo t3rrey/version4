@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import StyledSliderInput from "./StyledSliderInput";
 import styled from "styled-components";
 import Switch from "@mui/material/Switch";
@@ -7,6 +7,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import closeIcon from "../assets/closeIcon.svg";
 import useDebounce from "../hooks/useDebounce";
 import LayerCard from "./menu/LayerCard";
+import Context from "../context";
 
 const StyledContainer = styled.div`
   width: 350px;
@@ -80,7 +81,8 @@ const StyledColorHistory = styled.div`
   cursor: pointer;
 `;
 
-const Menu = ({ inputs }) => {
+const Menu = ({ inputs, layers, setLayers }) => {
+  const { setOption } = useContext(Context);
   const [currentColor, setCurrentColor] = useState("#000000");
   const debounceColor = useDebounce(currentColor, 1000);
   const [colorHistory, setColorHistory] = useState([currentColor]);
@@ -94,6 +96,11 @@ const Menu = ({ inputs }) => {
     newHistory.push(newColor);
     return newHistory;
   };
+
+  useEffect(() => {
+    setOption("color", currentColor);
+  }, [currentColor]);
+
   useEffect(() => {
     if (debounceColor) {
       const handleChangeColor = () => {
@@ -118,6 +125,7 @@ const Menu = ({ inputs }) => {
       handleChangeColor();
     }
   }, [debounceColor]);
+
   return (
     <>
       <StyledContainer>
@@ -140,6 +148,7 @@ const Menu = ({ inputs }) => {
         <StyledHeadingContainer>
           <StyledColorInput
             type="color"
+            value={currentColor}
             onChange={(e) => setCurrentColor(e.target.value)}
           />
           <StyledColorInfo style={{ background: currentColor }}>
@@ -156,7 +165,7 @@ const Menu = ({ inputs }) => {
           ))}
         </StyledHistoryContainer>
       </StyledContainer>
-      <LayerCard />
+      <LayerCard layers={layers} setLayers={setLayers} />
     </>
   );
 };

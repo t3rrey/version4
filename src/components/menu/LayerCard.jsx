@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useCallback } from "react";
 import styled from "styled-components";
 import closeIcon from "../../assets/closeIcon.svg";
 import addIcon from "../../assets/addIcon.svg";
 import Layer from "./Layer";
+import Context from "../../context";
+
 const StyledContainer = styled.div`
   width: 350px;
   border-radius: 20px;
@@ -39,13 +41,18 @@ const StyledAddLayerButton = styled.img`
 `;
 
 const LayerCard = () => {
+  const { state, addLayer } = useContext(Context);
+
   return (
     <StyledContainer>
       <StyledMainHeading>Layers</StyledMainHeading>
       <StyledExitButton src={closeIcon} />
       <Layer layerName={"Background"} />
+      {state.layers.map((layer) => (
+        <Layer layerName={layer} />
+      ))}
       <StyledAddLayerContainer>
-        <StyledAddLayerButton src={addIcon} />
+        <StyledAddLayerButton src={addIcon} onClick={addLayer} />
       </StyledAddLayerContainer>
     </StyledContainer>
   );

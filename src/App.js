@@ -1,4 +1,10 @@
-import React, { useCallback, useState, useRef, useEffect } from "react";
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+} from "react";
 import styled from "styled-components";
 import Actions from "./components/actions";
 import Snapshots from "./components/snapshots";
@@ -9,6 +15,8 @@ import CONFIG from "./config/config.js";
 import { downloadFile, onSvg, onClear } from "./services/data.service";
 import Menu from "./components/Menu";
 import Header from "./components/Header";
+
+import Context from "./context";
 
 const STORAGE_KEY = CONFIG.name;
 
@@ -52,6 +60,7 @@ const Container = styled.div`
 `;
 
 const App = () => {
+  const { state, setState } = useContext(Context);
   const [size, setSize] = useState(CONFIG.size);
   const [radius, setRadius] = useState(CONFIG.radius);
   const [width, setWidth] = useState(CONFIG.width);
@@ -84,6 +93,7 @@ const App = () => {
   const [translateY, setTranslateY] = useState(null);
   const snapshotRef = useRef(null);
   const cellRef = useRef([...new Array(height * width).fill().map(() => ({}))]);
+  const [layers, setLayers] = useState([]);
 
   const saveToStorage = useCallback(
     (saveObj) => {
@@ -567,7 +577,7 @@ const App = () => {
       <Header />
       <Content>
         <C1>
-          <Menu inputs={inputs} />
+          <Menu inputs={inputs} layers={layers} setLayers={setLayers} />
         </C1>
         <C2>
           <Canvas
@@ -576,9 +586,20 @@ const App = () => {
             width={width}
             height={height}
             cells={cellRef.current}
-            color={color}
+            color={state.config.color}
             key={viewing}
           />
+          {state.layers.map((layer) => (
+            <Canvas
+              size={size}
+              circles={radius}
+              width={width}
+              height={height}
+              cells={cellRef.current}
+              color={state.config.color}
+              key={viewing}
+            />
+          ))}
         </C2>
       </Content>
     </>
