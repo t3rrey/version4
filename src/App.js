@@ -51,6 +51,29 @@ const Container = styled.div`
   }
 `;
 
+const zoomFunc = () => {
+  const updateZoom = (value) => {
+    document.documentElement.style.setProperty("--zoom", value);
+    // TODO: Should we store the zoom in localStorage
+  };
+
+  // const ZOOM = settingsFolderRef.current
+  //   .add(CONFIG, "zoom", 1, 10, 0.1)
+  //   .onChange(updateZoom)
+  //   .name("Zoom");
+
+  // Try wheel zoom
+  const handleZoom = (e) => {
+    const STEP = 0.1;
+    const D = Math.max(-STEP, Math.min(STEP, e.wheelDeltaY || -e.detail));
+    CONFIG.zoom = Math.min(10, Math.max(CONFIG.zoom - D, 1));
+    //   ZOOM.updateDisplay();
+    updateZoom(CONFIG.zoom);
+  };
+
+  document.querySelector("#root").addEventListener("wheel", handleZoom);
+};
+
 const App = () => {
   const [size, setSize] = useState(CONFIG.size);
   const [radius, setRadius] = useState(CONFIG.radius);
@@ -451,108 +474,6 @@ const App = () => {
     }
   }, [height, width, saveToStorage]);
 
-  // useEffect(() => {
-  //   if (controllerRef.current) return;
-  //   // Set dark mode up
-  //   document.documentElement.style.setProperty(
-  //     "--darkness",
-  //     darkMode ? 10 : 100
-  //   );
-  //   controllerRef.current = new GUI();
-  //   const CONFIGURATION = controllerRef.current.addFolder("Configuration");
-  //   CONFIGURATION.add(CONFIG, "height", 2, 100, 1)
-  //     .onFinishChange((value) => {
-  //       if (
-  //         value !== heightRef.current &&
-  //         window.confirm(
-  //           "Are you sure? Making this change will wipe your current canvas."
-  //         )
-  //       ) {
-  //         cellRef.current = [
-  //           ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
-  //         ];
-  //         setHeight(value);
-  //         heightRef.current = value;
-  //         saveToStorage();
-  //         // setShadow(null)
-  //       }
-  //     })
-  //     .name("Canvas height");
-  //   CONFIGURATION.add(CONFIG, "width", 2, 100, 1)
-  //     .onFinishChange((value) => {
-  //       if (
-  //         value !== widthRef.current &&
-  //         window.confirm(
-  //           "Are you sure? Making this change will wipe your current canvas."
-  //         )
-  //       ) {
-  //         cellRef.current = [
-  //           ...new Array(CONFIG.height * CONFIG.width).fill().map(() => ({})),
-  //         ];
-  //         setWidth(value);
-  //         widthRef.current = value;
-  //         saveToStorage();
-  //         // setShadow(null)
-  //       }
-  //     })
-  //     .name("Canvas width");
-  //   CONFIGURATION.add(CONFIG, "size", 0, 20, 1)
-  //     .onFinishChange((size) => {
-  //       setSize(size);
-  //       // Will trigger shadow generation
-  //       // generateShadow()
-  //     })
-  //     .name("Pixel size");
-  //   CONFIGURATION.add(CONFIG, "radius")
-  //     .onFinishChange((size) => {
-  //       setRadius(size);
-  //     })
-  //     .name("Pixel radius");
-
-  //   colorFolderRef.current = controllerRef.current.addFolder("Color");
-  //   colorControllerRef.current = colorFolderRef.current
-  //     .addColor(CONFIG, "color")
-  //     .onFinishChange((color) => {
-  //       setColor(color);
-  //     })
-  //     .name("Color");
-
-  //   snapshotFolderRef.current = controllerRef.current.addFolder("Snapshots");
-  //   settingsFolderRef.current = controllerRef.current.addFolder("Settings");
-  //   settingsFolderRef.current
-  //     .add(CONFIG, "darkMode")
-  //     .onChange(setDarkMode)
-  //     .name("Dark mode");
-  //   const updateZoom = (value) => {
-  //     document.documentElement.style.setProperty("--zoom", value);
-  //     // TODO: Should we store the zoom in localStorage
-  //   };
-  //   const ZOOM = settingsFolderRef.current
-  //     .add(CONFIG, "zoom", 1, 10, 0.1)
-  //     .onChange(updateZoom)
-  //     .name("Zoom");
-  //   // settingsFolderRef.current
-  //   //   .add(CONFIG, 'debug')
-  //   //   .onChange(setDebugging)
-  //   //   .name('Show dev debug')
-  //   // Add actions folder for buttons
-  //   actionsFolderRef.current = controllerRef.current.addFolder("Actions");
-
-  //   // Try wheel zoom
-  //   const handleZoom = (e) => {
-  //     const STEP = 0.1;
-  //     const D = Math.max(-STEP, Math.min(STEP, e.wheelDeltaY || -e.detail));
-  //     CONFIG.zoom = Math.min(10, Math.max(CONFIG.zoom - D, 1));
-  //     ZOOM.updateDisplay();
-  //     updateZoom(CONFIG.zoom);
-  //   };
-
-  //   document.querySelector("#root").addEventListener("wheel", handleZoom);
-
-  //   // set a state variable to trigger the intial view?
-  //   setViewing(new Date().getTime());
-  // }, [darkMode, saveToStorage, palette]);
-
   useEffect(() => {
     if (palette.indexOf(color) === -1) {
       colorControllerRef.current.setValue(color);
@@ -683,39 +604,6 @@ const App = () => {
           />
         </C2>
       </Content>
-
-      {/* <Container>
-        
-        <Palette
-          color={color}
-          palette={palette}
-          parent={colorFolderRef}
-          onChange={onPaletteChange}
-          onDelete={deletePaletteColor}
-        />
-        <Snapshots
-          snapshots={snapshots}
-          onChange={handleSnapshot}
-          onDelete={deleteSnapshot}
-          parent={snapshotFolderRef}
-        />
-        <Actions
-          onCss={onCss}
-          onCssVar={onCopyCSSVariable}
-          onSvg={() => {
-            onSvg(width, size, height, radius, cellRef);
-          }}
-          onSnapshot={onSnapshot}
-          onImage={onImage}
-          onClear={() => {
-            onClear(cellRef, height, width, setViewing);
-          }}
-          onExport={onExport}
-          onImport={onImport}
-          onTrim={onTrim}
-          parent={actionsFolderRef}
-        />
-      </Container> */}
     </>
   );
 };
