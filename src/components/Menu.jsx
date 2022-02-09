@@ -6,6 +6,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import closeIcon from "../assets/closeIcon.svg";
 import useDebounce from "../hooks/useDebounce";
+import LayerCard from "./menu/LayerCard";
 
 const StyledContainer = styled.div`
   width: 350px;
@@ -156,6 +157,7 @@ const Menu = ({ inputs }) => {
           ))}
         </StyledHistoryContainer>
       </StyledContainer>
+      <LayerCard />
     </>
   );
 };

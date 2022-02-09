@@ -100,13 +100,8 @@ const App = () => {
       : []
   );
   const colorControllerRef = useRef(null);
-  const colorFolderRef = useRef(null);
   const darkModeRef = useRef(darkMode);
-  const snapshotFolderRef = useRef(null);
-  const actionsFolderRef = useRef(null);
-  const settingsFolderRef = useRef(null);
   const controllerRef = useRef(null);
-  // const [processing, setProcessing] = useState(false)
   const [processingSnapshot, setProcessingSnapshot] = useState(false);
   const [translateX, setTranslateX] = useState(null);
   const [translateY, setTranslateY] = useState(null);
