@@ -51,29 +51,6 @@ const Container = styled.div`
   }
 `;
 
-const zoomFunc = () => {
-  const updateZoom = (value) => {
-    document.documentElement.style.setProperty("zoom", value);
-    // TODO: Should we store the zoom in localStorage
-  };
-
-  // const ZOOM = settingsFolderRef.current
-  //   .add(CONFIG, "zoom", 1, 10, 0.1)
-  //   .onChange(updateZoom)
-  //   .name("Zoom");
-
-  // Try wheel zoom
-  const handleZoom = (e) => {
-    const STEP = 0.1;
-    const D = Math.max(-STEP, Math.min(STEP, e.wheelDeltaY || -e.detail));
-    CONFIG.zoom = Math.min(10, Math.max(CONFIG.zoom - D, 1));
-    //   ZOOM.updateDisplay();
-    updateZoom(CONFIG.zoom);
-  };
-
-  document.querySelector("#root").addEventListener("wheel", handleZoom);
-};
-
 const App = () => {
   const [size, setSize] = useState(CONFIG.size);
   const [radius, setRadius] = useState(CONFIG.radius);
