@@ -150,7 +150,7 @@ const Menu = ({ inputs }) => {
           {colorHistory.map((history) => (
             <StyledColorHistory
               style={{ background: history }}
-              onClick={(e) => setCurrentColor(e.target.value)}
+              onClick={(e) => setCurrentColor(history)}
             ></StyledColorHistory>
           ))}
         </StyledHistoryContainer>
