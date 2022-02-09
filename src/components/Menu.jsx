@@ -108,7 +108,8 @@ const Menu = ({ inputs }) => {
           return newHistory;
         }
         if (newHistory.length > 4) {
-          newHistory.splice(0, 1, newColor);
+          newHistory.splice(0, 1);
+          newHistory.push(newColor);
           return newHistory;
         }
         newHistory.push(newColor);

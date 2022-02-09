@@ -53,7 +53,7 @@ const Container = styled.div`
 
 const zoomFunc = () => {
   const updateZoom = (value) => {
-    document.documentElement.style.setProperty("--zoom", value);
+    document.documentElement.style.setProperty("zoom", value);
     // TODO: Should we store the zoom in localStorage
   };
 
@@ -442,6 +442,11 @@ const App = () => {
     };
     CHOOSE.addEventListener("input", importFile);
     CHOOSE.click();
+  };
+
+  const handleScrollWheelZoom = () => {
+    let value;
+    document.documentElement.style.setProperty("--zoom", value);
   };
 
   useEffect(() => {
