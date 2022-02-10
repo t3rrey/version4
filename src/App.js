@@ -140,38 +140,6 @@ const App = () => {
     }
   };
 
-  const deletePaletteColor = (e, color) => {
-    e.preventDefault();
-    if (
-      window.confirm(
-        "Are you sure you want to remove that color from the palette?"
-      )
-    ) {
-      const newPalette = palette.filter((c) => c !== color);
-      setPalette(newPalette);
-      window.localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          height,
-          width,
-          color,
-
-          darkMode,
-          snapshots,
-          palette: newPalette,
-        })
-      );
-    }
-  };
-
-  const onPaletteChange = (e, c) => {
-    e.preventDefault();
-    CONFIG.color = c;
-    controllerRef.current.updateDisplay();
-    setColor(c);
-    saveToStorage();
-  };
-
   const generateShadow = useCallback(() => {
     // Work out translation based on width, height, and size
     // translateX half of the width plus half of the size
@@ -421,11 +389,6 @@ const App = () => {
     };
     CHOOSE.addEventListener("input", importFile);
     CHOOSE.click();
-  };
-
-  const handleScrollWheelZoom = () => {
-    let value;
-    document.documentElement.style.setProperty("--zoom", value);
   };
 
   useEffect(() => {

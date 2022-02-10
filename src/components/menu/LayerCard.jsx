@@ -51,8 +51,8 @@ const LayerCard = () => {
       {state.layers.map((layer) => (
         <Layer layerName={layer} />
       ))}
-      <StyledAddLayerContainer>
-        <StyledAddLayerButton src={addIcon} onClick={addLayer} />
+      <StyledAddLayerContainer onClick={addLayer}>
+        <StyledAddLayerButton src={addIcon} />
       </StyledAddLayerContainer>
     </StyledContainer>
   );

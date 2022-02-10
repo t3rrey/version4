@@ -38,8 +38,6 @@ const Menu = ({ inputs, layers, setLayers }) => {
     if (debounceColor) {
       const handleChangeColor = () => {
         setColorHistory(updateColorHistory(debounceColor, colorHistory));
-        console.log(currentColor);
-        console.log(colorHistory);
       };
 
       const updateColorHistory = (newColor, colorHistory) => {
