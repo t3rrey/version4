@@ -6,17 +6,14 @@ import React, {
   useEffect,
 } from "react";
 import styled from "styled-components";
-import Actions from "./components/actions";
-import Snapshots from "./components/snapshots";
-import Palette from "./components/palette";
 import Canvas from "./components/canvas";
 import CONFIG from "./config/config.js";
 
 import { downloadFile, onSvg, onClear } from "./services/data.service";
-import Menu from "./components/Menu";
+import Menu from "./components/menu/index.jsx";
 import Header from "./components/Header";
 
-import Context from "./context";
+import Context from "./components/context/context";
 
 const STORAGE_KEY = CONFIG.name;
 

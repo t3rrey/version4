@@ -3,7 +3,7 @@ import styled from "styled-components";
 import closeIcon from "../../assets/closeIcon.svg";
 import addIcon from "../../assets/addIcon.svg";
 import Layer from "./Layer";
-import Context from "../../context";
+import Context from "../context/context";
 
 const StyledContainer = styled.div`
   width: 350px;
