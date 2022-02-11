@@ -72,6 +72,4 @@ export const StyledColorHistory = styled.div `
   cursor: pointer;
 `;
 
-export const contentContainer = styled.div `
-  display: none;
-`;
+export const ContentContainer = styled.div ``;

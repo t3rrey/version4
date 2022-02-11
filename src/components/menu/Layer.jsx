@@ -28,9 +28,9 @@ const StyledLayerNameInput = styled.input`
   padding: 4px;
 `;
 
-const Layer = ({ layerName }) => {
+const Layer = ({ layer, toggleLayer }) => {
   const [toggle, setToggle] = useState(true);
-  const [text, setText] = useState(layerName);
+  const [text, setText] = useState(layer.name);
   const [visibleLayer, setVisibleLayer] = useState(true);
   const [layers, setLayers] = useState([]);
 
@@ -44,6 +44,7 @@ const Layer = ({ layerName }) => {
 
   const handleHideLayer = () => {
     setVisibleLayer(!visibleLayer);
+    toggleLayer();
   };
 
   return (

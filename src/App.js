@@ -540,16 +540,7 @@ const App = () => {
           <Menu inputs={inputs} layers={layers} setLayers={setLayers} />
         </C1>
         <C2>
-          <Canvas
-            size={size}
-            circles={radius}
-            width={width}
-            height={height}
-            cells={cellRef.current}
-            color={state.config.color}
-            key={viewing}
-          />
-          {state.layers.map((layer) => (
+          {state.layers.filter(layer => layer.isVisible).map((layer) => (
             <Canvas
               size={size}
               circles={radius}

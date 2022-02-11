@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   height: ${(p) => p.height}px;
   width: ${(p) => p.width}px;
 `;

@@ -16,6 +16,7 @@ import {
   StyledColorHistory,
   StyledExitButton,
   StyledHistoryContainer,
+  ContentContainer,
 } from "./Menu.styles";
 
 const Menu = ({ inputs, layers, setLayers }) => {
@@ -23,11 +24,16 @@ const Menu = ({ inputs, layers, setLayers }) => {
   const [currentColor, setCurrentColor] = useState("#000000");
   const debounceColor = useDebounce(currentColor, 1000);
   const [colorHistory, setColorHistory] = useState([currentColor]);
+  const [visible, setVisible] = useState(true);
 
   const updateColorHistory = (newColor, colorHistory) => {
     let newHistory = colorHistory;
     newHistory.push(newColor);
     return newHistory;
+  };
+
+  const handleHideElement = () => {
+    setVisible(!visible);
   };
 
   useEffect(() => {
@@ -61,21 +67,27 @@ const Menu = ({ inputs, layers, setLayers }) => {
     <>
       <StyledContainer>
         <StyledMainHeading>Canvas Configuration</StyledMainHeading>
-        <StyledExitButton src={closeIcon} />
-        {inputs.map((input) => (
-          <StyledSliderInput width={300} stepValue={1} {...input} />
-        ))}
-        <FormGroup>
-          <FormControlLabel
-            control={<Switch defaultChecked />}
-            label="Pixel Radius"
-          />
-        </FormGroup>
+        <StyledExitButton src={closeIcon} onClick={handleHideElement} />
+        {visible ? (
+          <ContentContainer>
+            {inputs.map((input) => (
+              <StyledSliderInput width={300} stepValue={1} {...input} />
+            ))}
+            <FormGroup>
+              <FormControlLabel
+                control={<Switch defaultChecked />}
+                label="Pixel Radius"
+              />
+            </FormGroup>
+          </ContentContainer>
+        ) : (
+          <></>
+        )}
       </StyledContainer>
 
       <StyledContainer>
         <StyledMainHeading>Colors</StyledMainHeading>
-        <StyledExitButton src={closeIcon} />
+        <StyledExitButton src={closeIcon} onClick={handleHideElement} />
         <StyledHeadingContainer>
           <StyledColorInput
             type="color"

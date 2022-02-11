@@ -41,15 +41,14 @@ const StyledAddLayerButton = styled.img`
 `;
 
 const LayerCard = () => {
-  const { state, addLayer } = useContext(Context);
+  const { state, addLayer, toggleLayer } = useContext(Context);
 
   return (
     <StyledContainer>
       <StyledMainHeading>Layers</StyledMainHeading>
       <StyledExitButton src={closeIcon} />
-      <Layer layerName={"Background"} />
-      {state.layers.map((layer) => (
-        <Layer layerName={layer} />
+      {state.layers.map((layer, index) => (
+        <Layer layer={layer} toggleLayer={() => toggleLayer(index)} />
       ))}
       <StyledAddLayerContainer onClick={addLayer}>
         <StyledAddLayerButton src={addIcon} />
